@@ -1,5 +1,5 @@
 """
-ASGI config for HACKTX2022 project.
+ASGI config for django_hacktx project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'HACKTX2022.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_hacktx.settings')
 
 application = get_asgi_application()
