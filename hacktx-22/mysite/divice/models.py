@@ -11,6 +11,7 @@ class Name(models.Model):
 class Image(models.Model):
     id = models.AutoField(primary_key=True)
     image = models.ImageField(upload_to='images/')
+    filename = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return "image: " + str(self.id)

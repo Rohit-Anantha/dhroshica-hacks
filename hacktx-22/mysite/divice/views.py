@@ -7,6 +7,8 @@ from .models import Name, Image, Item
 
 import os
 
+from .python_code import receipt_processing
+
 page_path = "../mysite/divice/pages/"
 
 # Create your views here.
@@ -20,6 +22,15 @@ def welcome(request):
 # waiting for scan
 
 def waiting_scan(request, receipt_id):
+    images = Image.objects.all()
+    print("WAITING SCAN receipt id: ", receipt_id)
+    # get the image that matches the receipt id
+    for image in images:
+        if image.id == receipt_id:
+            print('starting receipt processing')
+            csv = print(receipt_processing.process_file('.' + image.filename))
+            print('done receipt processing')
+            return render(request, 'waiting_template.html', {'receipt_id': receipt_id, 'csv': csv})
     return render(request, 'waiting_template.html', {'receipt_id': receipt_id})
 
 # check scan result
@@ -51,8 +62,9 @@ def input_names(request):
     return render(request, 'add_people_template.html', context)
 
 def reset_names(request):
-    print('RESETING ALL NAMES IN THE DATABASE')
+    print('RESETING ALL NAMES AND IMAGES IN THE DATABASE')
     Name.objects.all().delete()
+    Image.objects.all().delete()
     
     context = {
         'form': NameForm(), 'name_list': Name.objects.all()
@@ -97,7 +109,10 @@ def send_image(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            receipt_id = Image.objects.all().last().id
+            current_file = Image.objects.last()
+            receipt_id = current_file.id
+            current_file.filename = "/media/" + str(current_file.image)
+            current_file.save()
             return redirect('../waiting/'+str(receipt_id))
     else:
         # GET request instead of post

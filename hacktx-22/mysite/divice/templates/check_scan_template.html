@@ -41,12 +41,11 @@
                 <p>Data..</p>
             </div>
         </div>
-        {% image.%}
         <script>
-            var receipt_id = "{{ image }}";
+            var receipt_id = "{{ image.image.url }}";
             console.log("\n\ninside the script inside check scan\n\n")
             console.log("\n\n\n IMAGE URL IS: " + receipt_id + "\n\n\n");
-            output.src = receipt_id;
+            output.src = ""+receipt_id;
         </script>
     </div>
  </body>
