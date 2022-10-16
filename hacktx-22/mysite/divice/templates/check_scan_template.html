@@ -1,11 +1,53 @@
 {% extends "base_template.html" %}
 
+{% block style %}
+    <style>
+        /* Set additional styling options for the columns*/
+        .column {
+        float: center;
+        width: 50%;
+        }
+
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+
+        .padded {
+            padding-right: 25%;
+            padding-left: 25%;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
 <div class="mxy-auto mt-5 pt-5">
     <div class="jumbotron text-center">
-        <h1>Make sure scan is correct</h1>
+        <h1>Scan results</h1>
     </div>   
 </div>
+<br>
+ <body>
+    <div class="padded text-center">
+        <script>
+            var receipt_id = "{{ image }}";
+            console.log("\n\ninside the script inside check scan\n\n")
+            console.log("\n\n\n IMAGE URL IS: " + receipt_id + "\n\n\n");
+        </script>
+        <div class="row">
+            <div class="column">
+                <h2>Item</h2>
+                <p>Data..</p>
+            </div>
+            <div class="column">
+                <h2>Price</h2>
+                <p>Data..</p>
+            </div>
+        </div>
+    </div>
+ </body>
+ <br>
 <div class="text-center">
     <a href="/people/" class="btn btn-lg btn-outline-success" role="button">Next</a>
 </div>

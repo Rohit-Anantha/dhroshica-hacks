@@ -1,0 +1,56 @@
+{% extends "base_template.html" %}
+
+{% block style %}
+<style>
+    {% comment %} /* Set additional styling options for the columns*/ {% endcomment %}
+    .column {
+    float: center;
+    width: 100%;
+    }
+
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+    }
+
+    .padded {
+        padding-left: 30%;
+        padding-right: 30%;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="mxy-auto mt-5 pt-5">
+    <div class="jumbotron text-center">
+        <h1>Add payers</h1>
+    </div>
+    
+    <br>
+    
+    <div class="text-center">
+        <!-- print names that are already in database -->
+        <div class="padded text-center">
+            {% for name in name_list%}
+                <div class="row">
+                    <p>{{ name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        
+
+        <!-- Form stuff testing -->
+        <form action="/payer-name/" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="OK">
+        </form>
+        <!-- Form stuff testing -->
+
+        <a href="/check/35" class="btn btn-lg btn-outline-secondary" role="button">Back</a>
+        <a href="/reset-names/" class="btn btn-lg btn-outline-danger" role="button">Reset</a>
+        <a href="/assign/" class="btn btn-lg btn-outline-success" role="button">Finished</a>
+    </div>
+</div>
+{% endblock %}

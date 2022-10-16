@@ -2,7 +2,8 @@ from django import forms
 from .models import *
 
 class NameForm(forms.Form):
-    payee_name = forms.CharField(label='Payee name', max_length=100)
+    payer_name = forms.CharField(label='Add new payer', max_length=100)
+
 
 
 class ImageForm(forms.ModelForm):

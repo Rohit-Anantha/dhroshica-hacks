@@ -7,6 +7,12 @@
         <div class="d-flex justify-content-center mt-5 pt-5">
             <div class="spinner-border text-secondary" style="width: 5rem; height: 5rem;" role="status">
                 <span class="visually-hidden">Loading...</span>
+                <script>
+                    var delay_in_milliseconds = 3000; //3 seconds
+                    setTimeout(function() {
+                        window.location.href = "/check/" + {{ receipt_id }};
+                    }, delay_in_milliseconds);
+                </script>
             </div>
         </div>
     </div>   

@@ -9,19 +9,42 @@
     </div>
     <div class="text-center">
         <body>
-            <form>
+            <form action="/post/" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <button type="submit" class="btn btn-lg btn-outline-success" style="background-color: #a2d9d7" >Submit</button>
+                
+                <!-- WILL TRY TO ADD THIS TO RESULTS INSTEAD
                 <div class="form-group">
-                  <label for="exampleFormControlFile1">Example file input</label>
+                <div>
+                  <label id="formlabel" for="exampleFormControlFile1">Select a file</label>
+                </div>
+                <br>
+                <span style="padding-left:9%;">
                   <input type="file" accept=".jpeg,.png,.jpg" id="file" name="file" onchange="loadFile(event)">
-                  <img id="output" width="500" />
-                  <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;">
+                </span>
+                <br>
+                <br>
+
+                <br>
+                <br>
+                <img id="output" width="0" />
+                -->
                 </div>
               </form>
         </body>
         <script>
             var loadFile = function (event) {
                 var image = document.getElementById('output');
+                
+                // post to the server
+
+                image.width = 500;
                 image.src = URL.createObjectURL(event.target.files[0]);
+                // remove formlabel 
+                var label = document.getElementById('formlabel');
+                label.style.display = "none";
             };
         </script>
     </div>

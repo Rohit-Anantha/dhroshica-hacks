@@ -3,6 +3,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <title>Div-ice</title>
+        <style>
+            .bottom-padded {
+                padding-bottom: 10%;
+            }
+        </style>
+        <div id="style">
+            {% block style %}{% endblock %}
+        </div>
     </head>
 
     <body style="background-color: #ffefcf;">
@@ -27,8 +35,18 @@
                 </div>
             </nav>
         </div>
-        <div id="content">
+        <div id="content" class="bottom-padded">
             {% block content %}{% endblock %}
+        </div>
+        <div class="fixed-bottom">
+            <marquee behavior="scroll" direction="right" height="60px" scrollamount="16">
+                <img style="margin-right:150px" src="../static/check-1.png" width="60">
+                <img style="margin-right:150px" src="../static/check-2.png" width="60">
+                <img style="margin-right:150px" src="../static/check-3.png" width="60">
+                <img style="margin-right:150px" src="../static/check-4.png" width="60">
+                <img style="margin-right:150px" src="../static/check-5.png" width="60">
+                <img style="margin-right:150px" src="../static/check-6.png" width="60">
+            </marquee>
         </div>
     </body>
 </html>
