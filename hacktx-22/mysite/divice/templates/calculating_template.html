@@ -8,10 +8,13 @@
             <div class="spinner-border text-secondary" style="width: 5rem; height: 5rem;" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
+            <script>
+                var delay_in_milliseconds = 3000; //3 seconds
+                setTimeout(function() {
+                    window.location.href = "/results";
+                }, delay_in_milliseconds);
+            </script>
         </div>
     </div>   
-    <div class="text-center mt-5">
-        <a href="/results/" class="btn btn-lg btn-outline-secondary" role="button">Next (delete later)</a>
-    </div>
 </div>
 {% endblock %}

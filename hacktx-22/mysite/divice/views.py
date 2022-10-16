@@ -28,10 +28,17 @@ def waiting_scan(request, receipt_id):
     for image in images:
         if image.id == receipt_id:
             print('starting receipt processing')
-            csv = print(receipt_processing.process_file('.' + image.filename))
+            text_ver = receipt_processing.process_file('.' + image.filename)
+            # make a directory if it doesn't exist
+            if not os.path.exists(page_path):
+                os.mkdir("textfiles")
+            # write to file
+            with open( "textfiles/" + image.filename.split('/')[-1].split('.')[0] + ".txt", "w") as text_file:
+                text_file.write(text_ver)
+            
             print('done receipt processing')
-            return render(request, 'waiting_template.html', {'receipt_id': receipt_id, 'csv': csv})
-    return render(request, 'waiting_template.html', {'receipt_id': receipt_id})
+            return render(request, 'waiting_template.html', {'receipt_id': receipt_id})
+    return render(request, 'waiting_template.html', {'receipt_id': -1})
 
 # check scan result
 
@@ -42,7 +49,16 @@ def check_scan(request, receipt_id):
     for image in images:
         if image.id == receipt_id:
             print("FOUND IMAGE")
-            return render(request, 'check_scan_template.html', {'image': image})
+            filename = image.filename
+            text_file = filename.split('/')[-1].split('.')[0] + ".txt"
+            print("TEXT FILE: ", "textfiles/"+text_file)
+            list_ver = []
+            file = open("textfiles/"+text_file, "r")
+            for line in file:
+                list_ver.append(line.split('$'))
+            file.close()
+            print("LIST VER: ", list_ver)
+            return render(request, 'check_scan_template.html', {'image': image, 'list_ver': list_ver})
 
     return render(request, 'check_scan_template.html', {'image': -1})
 

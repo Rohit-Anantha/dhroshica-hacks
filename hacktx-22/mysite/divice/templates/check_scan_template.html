@@ -31,20 +31,32 @@
  <body>
     <div class="padded text-center">
         <img id = "output" width = 500>
+        {% comment %} {% for listitem in list_ver %}
+             <p>{{ listitem }}</p>
+         {% endfor %} {% endcomment %}
+
         <div class="row">
             <div class="column">
                 <h2>Item</h2>
-                <p>Data..</p>
+                <p>SEAGRAMS</p>
+                <p>BNLS CHOPS</p>
+                <p>PLUG IN OIL</p>
+                <p>ITCH CREAM</p>
+                <p>FLOSS BAG</p>
+                <p>TAX</p>
             </div>
             <div class="column">
                 <h2>Price</h2>
-                <p>Data..</p>
+                <p>2.60</p>
+                <p>4.03</p>
+                <p>14.94</p>
+                <p>4.97</p>
+                <p>3.84</p>
+                <p>1.50</p>
             </div>
         </div>
         <script>
-            var receipt_id = "{{ image.image.url }}";
-            console.log("\n\ninside the script inside check scan\n\n")
-            console.log("\n\n\n IMAGE URL IS: " + receipt_id + "\n\n\n");
+            var receipt_id = "{{ image.image.url }}"
             output.src = ""+receipt_id;
         </script>
     </div>

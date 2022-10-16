@@ -32,14 +32,28 @@
             <div class="row">
                 <div class="column">
                     <h2>Item</h2>
-                    {% for item in item_list %}
+                    <select class="form-select" aria-label="select">
+                        <option selected>Choose an item to assign</option>
+                            <option value="1">SEAGRAMS</option>
+                            <option value="2">BNLS CHOPS</option>
+                            <option value="3">PLUG IN OIL</option>
+                            <option value="4">ITCH CREAM</option>
+                            <option value="5">FLOSS BAG</option>
+                            <option value="6">TAX</option>
+                    </select>
+                    <!-- {% for item in item_list %}
                         <p>{{ item }}</p>
-                    {% endfor %}
+                        <button class="btn btn-lg btn-outline-secondary disabled" role="button">{{ item }}</button>
+                    {% endfor %} -->
                 </div>
                 <div class="column">
                     <h2>Person</h2>
                     {% for name in name_list %}
-                        <p>{{ name }}</p>
+                        <!-- <p>{{ name }}</p> -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">{{ name }}</label>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
