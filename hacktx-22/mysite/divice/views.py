@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 from .forms import ImageForm, NameForm
-from .models import NameItem, ImageItem
+from .models import Name, Image
 
 import os
 
@@ -25,50 +25,37 @@ def waiting_scan(request, receipt_id):
 # check scan result
 
 def check_scan(request, receipt_id):
-    images = ImageItem.objects.all()
+    images = Image.objects.all()
     print("CHECK SCAN receipt id: ", receipt_id)
 
     for image in images:
         if image.id == receipt_id:
             print("FOUND IMAGE")
-            return render(request, 'check_scan_template.html', {'image': image.image.url})
+            return render(request, 'check_scan_template.html', {'image': image})
 
-    return render(request, 'check_scan_template.html', {'receipt_id': -1})
+    return render(request, 'check_scan_template.html', {'image': -1})
 
 # input names
 
 def input_names(request):
-    return render(request, 'add_people_template.html')
-
-# accept payer form requests
-
-def payer_name(request):
-    print('PAYER_NAME CALLED LOLLLLL')
-
     if request.method == 'POST':
         form = NameForm(request.POST)
 
         if form.is_valid():
-            print("AYY YOOOO: ", form.cleaned_data)
-            name = NameItem(name=form.cleaned_data['payer_name'])
+            name = Name(name=form.cleaned_data['payer_name'])
             name.save()
-            print('Name {0} should be in the database with id {1}'.format(form.cleaned_data['payer_name'], name.id))
-            print('printing database:')
-            objs = NameItem.objects.all()
-            for i in range(len(objs)):
-                print('obj[{0}].name: {1}'.format(i, objs[i].name))
 
     context = {
-        'form': NameForm(), 'name_list': NameItem.objects.all()
+        'form': NameForm(), 'name_list': Name.objects.all()
     }
     return render(request, 'add_people_template.html', context)
 
 def reset_names(request):
     print('RESETING ALL NAMES IN THE DATABASE')
-    NameItem.objects.all().delete()
+    Name.objects.all().delete()
     
     context = {
-        'form': NameForm(), 'name_list': NameItem.objects.all()
+        'form': NameForm(), 'name_list': Name.objects.all()
     }
     return render(request, 'add_people_template.html', context)
 
@@ -107,7 +94,7 @@ def send_image(request):
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            receipt_id = ImageItem.objects.all().last().id
+            receipt_id = Image.objects.all().last().id
             return redirect('../waiting/'+str(receipt_id))
     else:
         # GET request instead of post
