@@ -19,7 +19,6 @@ def welcome(request):
 
 # file upload
 def file_upload(request):
-    
     html = open(page_path + "file_upload.html")
     return HttpResponse(html)
 
@@ -31,13 +30,26 @@ def waiting_scan(request):
 
 # check scan result
 
-def results(request):
-    return HttpResponse("help")
+def check_scan(request):
+    html = open(page_path+"check_scan_page.html")
+    return HttpResponse(html)
 
 # input names
 
+def input_names(request):
+    html = open(page_path+"add_people_page.html")
+    return HttpResponse(html)
+
 # assign items
 
+def assign_items(request):
+    html = open(page_path+"assign_items_page.html")
+    return HttpResponse(html)
+
 # waiting for calculations
+
+def waiting_calc(request):
+    html = open(page_path+"calculating_page.html")
+    return HttpResponse(html)
 
 # final output page
