@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 
 from .forms import ImageForm, NameForm
-from .models import Name, Image
+from .models import Name, Image, Item
 
 import os
 
@@ -62,7 +62,10 @@ def reset_names(request):
 # assign items
 
 def assign_items(request):
-    return render(request, 'assign_items_template.html')
+    context = {
+        'item_list': Item.objects.all(), 'name_list': Name.objects.all()
+    }
+    return render(request, 'assign_items_template.html', context)
 
 # waiting for calculations
 

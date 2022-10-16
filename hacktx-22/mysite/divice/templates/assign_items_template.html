@@ -32,11 +32,15 @@
             <div class="row">
                 <div class="column">
                     <h2>Item</h2>
-                    <p>Data..</p>
+                    {% for item in item_list %}
+                        <p>{{ item }}</p>
+                    {% endfor %}
                 </div>
                 <div class="column">
                     <h2>Person</h2>
-                    <p>Data..</p>
+                    {% for name in name_list %}
+                        <p>{{ name }}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
