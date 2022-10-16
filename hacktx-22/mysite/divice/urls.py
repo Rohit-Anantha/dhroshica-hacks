@@ -11,4 +11,9 @@ urlpatterns = [
     path('people/', views.input_names, name='people-page'),
     path('assign/', views.assign_items, name='assign-page'),
     path('calculating/', views.waiting_calc, name='calculate-page'),
+    path('results/', views.results, name='result-page'),
+    # these next ones are for form stuffies
+    path('payee-name/', views.payee_name, name='payee-form-receiver'),
+    # upload image
+    path('upload-image/', views.upload_image, name='upload-image')
 ]

@@ -7,17 +7,40 @@
         <title>
             Div-ice
         </title>
+        <div style="width: 100%">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <span style="padding-left:2%;">
+                    <a class="navbar-brand" href="/home/">Div-ice</a>
+                </span>
+                <span style="padding-right:2%">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </span>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/upload/">New Scan</a>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+        </div>
         <div class="mxy-auto mt-5 pt-5">
             <div class="jumbotron text-center">
                 <h1>Add payees</h1>
             </div>
             <div class="text-center mt-5 pt-5">
-                <form>
-                    
+                <!-- Form stuff testing -->
+                <form action="/payee-name/" method="post">
+                    <label for="payee_name">Payee name: </label>
+                    <input id="payee_name" type="text" name="payee_name" value="{{ current_name }}">
+                    <input type="submit" value="OK">
                 </form>
+                <!-- Form stuff testing -->
 
                 <a href="/check/" class="btn btn-lg btn-outline-secondary" role="button">Back</a>
-                <a href="/assign/" class="btn btn-lg btn-success" role="button">Ready to assign</a>
+                <a href="/assign/" class="btn btn-lg btn-success" role="button">Next</a>
             </div>
         </div>
 </html>

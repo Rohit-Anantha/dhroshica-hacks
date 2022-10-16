@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 from django.http import HttpResponse
+
+from .forms import ImageForm, NameForm
 
 import os
 
@@ -10,12 +12,9 @@ page_path = "../mysite/divice/pages/"
 
 # notes  -------
 # views are pages
-
-
 # welcome page
 def welcome(request):
-    html = open(page_path+"welcome_page.html")
-    return HttpResponse(html)
+    return render(request, 'welcome_template.html')
 
 # file upload
 def file_upload(request):
@@ -25,8 +24,7 @@ def file_upload(request):
 # waiting for scan
 
 def waiting_scan(request):
-    html = open(page_path+"waiting_page.html")
-    return HttpResponse(html)
+    return render(request, 'waiting_template.html')
 
 # check scan result
 
@@ -39,6 +37,20 @@ def check_scan(request):
 def input_names(request):
     html = open(page_path+"add_people_page.html")
     return HttpResponse(html)
+
+# accept payee form requests
+
+def payee_name(request):
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+
+        if form.is_valid():
+            print("AYY YOOOO: ", form.cleaned_data)
+    
+    else:
+        form = NameForm()
+
+
 
 # assign items
 
@@ -53,3 +65,23 @@ def waiting_calc(request):
     return HttpResponse(html)
 
 # final output page
+
+def results(request):
+    html = open(page_path+"results_page.html")
+    return HttpResponse(html)
+
+
+# testing image upload
+
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect('../results/')
+    else:
+        form = ImageForm()
+    return render(request, 'image_upload.html', {
+        'form': form
+    })
