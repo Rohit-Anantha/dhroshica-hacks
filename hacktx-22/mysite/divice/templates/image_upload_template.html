@@ -1,0 +1,30 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+
+<div class="mxy-auto mt-5 pt-5">
+    <div class="jumbotron text-center">
+        <h1>Upload your receipt</h1>
+        <br>
+    </div>
+    <div class="text-center">
+        <body>
+            <form>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Example file input</label>
+                  <input type="file" accept=".jpeg,.png,.jpg" id="file" name="file" onchange="loadFile(event)">
+                  <img id="output" width="500" />
+                  <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)" style="display: none;">
+                </div>
+              </form>
+        </body>
+        <script>
+            var loadFile = function (event) {
+                var image = document.getElementById('output');
+                image.src = URL.createObjectURL(event.target.files[0]);
+            };
+        </script>
+    </div>
+</div>
+
+{% endblock %}

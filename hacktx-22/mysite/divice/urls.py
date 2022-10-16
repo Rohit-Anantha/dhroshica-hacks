@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.welcome, name='default-welcome-page'),
     path('home/', views.welcome, name='welcome-page'),
-    path('upload/', views.file_upload, name='upload-page'),
+    path('upload/', views.upload_image, name='upload-page'),
     path('waiting/', views.waiting_scan, name='waiting-page'),
     path('check/', views.check_scan, name='check-page'),
     path('people/', views.input_names, name='people-page'),
@@ -14,6 +14,5 @@ urlpatterns = [
     path('results/', views.results, name='result-page'),
     # these next ones are for form stuffies
     path('payee-name/', views.payee_name, name='payee-form-receiver'),
-    # upload image
-    path('upload-image/', views.upload_image, name='upload-image')
+
 ]

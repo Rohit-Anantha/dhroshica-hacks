@@ -16,11 +16,6 @@ page_path = "../mysite/divice/pages/"
 def welcome(request):
     return render(request, 'welcome_template.html')
 
-# file upload
-def file_upload(request):
-    html = open(page_path + "file_upload.html")
-    return HttpResponse(html)
-
 # waiting for scan
 
 def waiting_scan(request):
@@ -29,8 +24,7 @@ def waiting_scan(request):
 # check scan result
 
 def check_scan(request):
-    html = open(page_path+"check_scan_page.html")
-    return HttpResponse(html)
+    return render(request, 'check_scan_template.html')
 
 # input names
 
@@ -61,15 +55,12 @@ def assign_items(request):
 # waiting for calculations
 
 def waiting_calc(request):
-    html = open(page_path+"calculating_page.html")
-    return HttpResponse(html)
+    return render(request, 'calculating_template.html')
 
 # final output page
 
 def results(request):
-    html = open(page_path+"results_page.html")
-    return HttpResponse(html)
-
+    return render(request, 'results_template.html')
 
 # testing image upload
 
@@ -82,6 +73,6 @@ def upload_image(request):
             return redirect('../results/')
     else:
         form = ImageForm()
-    return render(request, 'image_upload.html', {
+    return render(request, 'image_upload_template.html', {
         'form': form
     })
